@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JOJO</title>
+<link href="./style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<table border="1">
+  <tr>
+    <th id="title" colspan="2">JOJO</th>
+  </tr>
+  <tr>
+    <td id="main" colspan="2" onclick="Vars.iter.next()">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" noswap>
+      <button onclick="Func.select(1)">Choosing A</button>
+      <button onclick="Func.select(2)">Choosing B</button>
+      <button onclick="Func.select(3)">Choosing C</button>
+      You have chosen <strong id="selectTbl">none</strong>
+    </td>
+  </tr>
+  <tr>
+    <td id="einsNameTbl" class="name">11</td>
+    <td id="zweiNameTbl" class="name">12</td>
+  </tr>
+  <tr>
+    <td id="einsAttrsTbl" class="attrs">21</td>
+    <td id="zweiAttrsTbl" class="attrs">22</td>
+  </tr>
+  <tr>
+    <td id="spell" colspan="2">
+      你的技能：<br />攻击：
+      <button id="s0" style="display: none" onclick="Func.battle('attack', eins, zwei)">攻击</button>法术：
+      <button id="s1" style="display: none" onclick="Func.battle('oula', eins, zwei)">OuLa~</button>
+      <button id="s2" style="display: none" onclick="Func.battle('fire', eins, zwei)">🔥Fire🔥</button>
+    </td>
+  </tr>
+  <!--
+      <button id="s0" style="display: none" onclick="battle(eins, zwei)">攻击</button>法术：
+  -->
+</table>
+
+</body>
+</html>
+<script src="./global.js"></script>
+<script src="./characters.js"></script>
+<script src="./stories.js"></script>
+<script>
+</script>

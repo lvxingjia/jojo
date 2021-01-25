@@ -1,0 +1,27 @@
+body
+{
+  font-size:100%;
+}
+table
+{
+  width:100%;
+  height:20em;
+}
+.name
+{
+  width:50%;
+  text-align:center;
+  font-size:1.5em;
+}
+.attrs
+{
+  width:50%;
+  font-size:1.2em;
+}
+#main
+{
+  width:200%;
+  height:20em;
+  float:inline-start;
+  font-size:1em;
+}
