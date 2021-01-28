@@ -54,13 +54,14 @@ let Character = function(spec) {
 let Hero = function(spec) {
   let me = Character(spec);
   let superShow = me.show;
+  let superFail = me.fail;
   me.attrs = ['hp', 'mp', 'ap', 'sp', 'wp'];
   me.attrsCN = ['生命', '法力', '攻击', '法术', '武器'];
 
   me.mp = spec.mp;
   me.sp = spec.sp;
-  me.wp = spec.wp || '小粉拳';
-  me.sl = spec.sl || [0, 0, 0]; //skill level
+  me.wp = spec.wp || '超级无敌破坏拳';
+  me.sl = spec.sl || [1, 1, 0]; //skill level
 
   me.show = function() {
     superShow();
@@ -70,6 +71,16 @@ let Hero = function(spec) {
         UI[sid[i]].style.display = 'inline';
       }
     }
+  };
+  me.fail = function() {
+    superFail();
+    Vars.flag = -1;
+    let str = [
+      '你被击败了，但这没什么大不了的，不信点一下屏幕',
+      '你输了，也许应该尝试其他的策略...'
+      ];
+    Func.add(Func.rand(str));
+    Func.addF('（点击以继续）');
   };
   me.spell = function(mana, factor){
     mana = mana || 0;
@@ -122,13 +133,20 @@ let Hero = function(spec) {
 
 let Enemy = function(spec) {
   let me = Character(spec);
+  let superFail = me.fail;
   me.pos = [zweiNameTbl, zweiAttrsTbl];
+
+  me.fail = function() {
+    superFail();
+    Vars.flag = 1;
+    Func.addF('（点击以继续）');
+  };
   return me;
 };
 
 
 let Boss = function(spec) {
-  let me = Character(spec);
+  let me = Enemy(spec);
   me.attrs = ['hp', 'mp', 'ap', 'sp', 'sk'];
   me.attrsCN = ['生命', '法力', '攻击', '法术', '技能'];
   me.pos = [zweiNameTbl, zweiAttrsTbl];
@@ -144,20 +162,3 @@ let Boss = function(spec) {
   return me;
 };
 
-
-eins = Hero({name: 'JOJO', hp: 20, ap: 30, sp: 70, mp: 100});
-eins.sl = [1, 0, 1];
-zwei = Boss({name: 'DIO', hp: 50, ap: 10});
-zwei.skill('BOOOOOM!',
-  function(target) {
-  if (!this.hp || !target.hp) return;
-  target.hp -= 100;
-  Func.add('BOOOOOM!');
-  target.check();
-  },
-  function(damage){
-    return 0;
-  }
-);
-eins.show();
-zwei.show();

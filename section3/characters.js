@@ -145,9 +145,9 @@ let Boss = function(spec) {
 };
 
 
-let eins = Hero({name: 'JOJO', hp: 20, ap: 30, sp: 70, mp: 100});
+eins = Hero({name: 'JOJO', hp: 20, ap: 30, sp: 70, mp: 100});
 eins.sl = [1, 0, 1];
-let zwei = Boss({name: 'DIO', hp: 50, ap: 10});
+zwei = Boss({name: 'DIO', hp: 50, ap: 10});
 zwei.skill('BOOOOOM!',
   function(target) {
   if (!this.hp || !target.hp) return;

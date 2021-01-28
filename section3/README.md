@@ -5,6 +5,9 @@
 
 
 本节尝试在主显示框main里讲故事。每个章节有若干页，当主框被点击时线性推进；在每章节的最后一页，可以选择3个选项，不同的选项将进入不同章节。  
+- Story对象: 纯文字剧情
+- Action对象: 战斗，或其他依靠自定义函数实现的过程
+
 ```javascript
 // 文件stories.js中的Story对象并不是整个故事，而是一个章节
 // 章节可以看作一个故事树的节点
@@ -203,7 +206,7 @@ let Action = function(scene) {
   me.start = scene.start || function() {
     Func.tell('无事发生');
   };
-  me.outcome = scene.outcome || [];
+  me.outcome = scene.outcome || 0;
   // Vars.flag 0事件继续 1事件完成 -1事件失败
   me.next = function() {
     if (Vars.flag) {
@@ -225,7 +228,7 @@ let Action = function(scene) {
         Vars.iter.start();
       } else {
         Func.setSelectable(0);
-        Vars.iter = Story(chapter[idx]);
+        Vars.iter = Action(incident[-idx]);
         Vars.iter.start();
       }
     } else {
